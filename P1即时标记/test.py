@@ -94,7 +94,7 @@ print(next(g))，会执行yield ‘normal value 2’语句，并停留在执行�
 g.throw(TypeError)：会跳出try语句，从而print(‘here’)不会被执行，然后执行break语句，跳出while循环，然后到达程序结尾，所以跑出StopIteration异常。
 
 '''
-def flatten(nested):
+'''def flatten(nested):
  
     try:
         #如果是字符串，那么手动抛出TypeError。
@@ -111,7 +111,7 @@ def flatten(nested):
  
 L=['aaadf',[1,2,3],2,4,[5,[6,[8,[9]],'ddf'],7]]
 for num in flatten(L):
-    print(num)
+    print(num)'''
 
 '''
 总结
@@ -122,3 +122,11 @@ for num in flatten(L):
 可以通过generator.throw(exception)来传入一个异常。throw语句会消耗掉一个yield。可以通过generator.close()来手动关闭生成器。
 next()等价于send(None)
 '''
+def test():
+    yield 1
+    yield 2
+    yield 3
+
+g = test()
+for i in g:
+    print i
