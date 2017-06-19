@@ -122,6 +122,7 @@ for num in flatten(L):
 可以通过generator.throw(exception)来传入一个异常。throw语句会消耗掉一个yield。可以通过generator.close()来手动关闭生成器。
 next()等价于send(None)
 '''
+'''
 def test():
     yield 1
     yield 2
@@ -130,3 +131,10 @@ def test():
 g = test()
 for i in g:
     print i
+'''
+def count(a):
+    def sum(b):
+        return b
+    return sum
+c = count(2)
+print c(3)
