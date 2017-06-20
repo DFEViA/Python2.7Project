@@ -132,9 +132,9 @@ g = test()
 for i in g:
     print i
 '''
-def count(a):
+def count():
     def sum(b):
         return b
     return sum
-c = count(2)
+c = count()
 print c(3)
