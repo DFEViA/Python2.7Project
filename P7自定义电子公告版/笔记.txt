@@ -1,0 +1,54 @@
+26 自定义电子公告板
+26.1 问题
+本章会介绍如何创建通过网络发布和回复信息的简单系统。
+本章开发的系统很简单，但具备基本的功能，并且能够处理相当大数量的帖子
+
+最终的系统应该支持下面的功能
+1、显示所有当前消息的主题
+2、支持消息的线程处理（显示针对回复消息的所有回复消息）
+3、查看已经存在的消息
+4、回复已经存在的消息
+程序所期望的健壮性可以用一些数据库服务器所实现，而不用自己写文件处理代码。
+
+26.2 有用的工具
+
+26.3 准备工作
+
+CREATE TABLE messages(
+	id          SERIAL PRIMARY KEY,
+	subject     TEXT NOT NULL,
+	sender      TEXT NOT NULL,
+	reply_to    INTEGER REFERENCES messages,
+	text        TEXT NOT NULL
+);
+
+CREATE TABLE messages(
+	id          INT NOT NULL AUTO_INCREMENT,
+	subject     VARCHAR(100) NOT NULL,
+	sender      VARCHAR(15) NOT NULL,
+	reply_to    INT,
+	text        MEDIUMTEXT NOT NULL,
+	PRIMARY KEY(id)
+);
+
+
+26.4 初次实现
+Python DE API的功能方式
+
+26.5 再次实现
+创建这类强壮并且用户友好的系统是很难得。
+如何架构系统呢？
+架构web程序（使用类似CGI的技术）的简单方法就是对用户执行的每一个操作写一个脚本。
+main.cgi:显示所有消息的主题（帖子），每个消息连接到文章本身。
+view.cgi:显示一篇文章，并且包括用于回复的链接。
+edit.cgi:在可以编辑的表单（带有文本框和文本域）中显示一篇文章。页面的提交按钮链接到能实现保存功能的脚本处。
+save.cgi:获取（edit.cgi中的）文章的信息，并且将其作为新航插入到数据库的表中进行保存。
+
+26.5.1 编写Main脚本
+
+26.5.2 编写View脚本
+
+26.5.3 编写Edit脚本
+
+26.5.4 编写Save脚本
+sql插入数据后，数据库更改了，要调用conn.commit，这样在脚本终止的时候改变的内容才不会丢失。
